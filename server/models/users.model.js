@@ -1,12 +1,15 @@
-module.exports = (sequelize, dataType) => {
+module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define("users", {
-    email: { type: dataType.STRING } ,
-    password: { type: dataType.STRING },
-    username: { type: dataType.STRING },
-    profile_picture: {type: dataType.STRING ,defaultValue:"https://www.uvu.edu/biology/research/heath_ogden/images/ogdenlab_default.jpg"},
-  }, {
-    timestamps: false
-});
+    username: {
+      type: Sequelize.STRING
+    },
+    email: {
+      type: Sequelize.STRING
+    },
+    password: {
+      type: Sequelize.STRING
+    }
+  });
 
   return User;
 };

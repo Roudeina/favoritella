@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     review: {
-      type: Sequelize.NUMBER
+      type: Sequelize.STRING
     },
     date: {
       type: Sequelize.STRING

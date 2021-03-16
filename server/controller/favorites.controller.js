@@ -1,11 +1,12 @@
 const db = require("../models");
-const Favorites = db.favorites;
+const Favorites = db.farovites;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new favorites
 exports.create = (req, res) => {
 
     const favorite = {
+        userid:req.body.userid,
         title: req.body.title,
         actors: req.body.actors,
         review: req.body.review,
