@@ -7,6 +7,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
+  console.log('req.body!!!!!!!!',req.body)
   // Save User to Database
   Users.create({
     username: req.body.username,
@@ -63,5 +64,30 @@ exports.signin = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
+    });
+};
+
+exports.update = (req, res) => {
+
+  const id = req.body.userid;
+  const profile_pic=req.body.profile_pic;
+  Users.update({profile_pic:profile_pic}, {
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "user was updated successfully."
+        });
+      } else {
+        res.send({
+          message: `Cannot update user with id=${id}. Maybe user was not found or req.body is empty!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating user with id=" + id,err:err
+      });
     });
 };
